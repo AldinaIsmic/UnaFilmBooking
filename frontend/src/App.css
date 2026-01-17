@@ -1,0 +1,38 @@
+/* ===============================
+   GLOBAL – SAMO BODY SCROLL
+   =============================== */
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+
+  overflow-y: auto;     /* ✅ JEDINI SCROLL */
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* React root NE SMIJE skrolati */
+#root {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
+/* Layout wrapperi – UBICI DRUGI SCROLL */
+.app-root,
+.admin-layout,
+.admin-content,
+.page-wrapper,
+.main-content {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}

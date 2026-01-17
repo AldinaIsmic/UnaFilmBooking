@@ -1,0 +1,272 @@
+/* =====================================================
+   ADD PARTNER (DODAJ PARTNERA) – SCOPED (NO OVERLAP)
+   ===================================================== */
+
+.partners-add-page.page-background {
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 5px 48px 32px 55px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.partners-add-page.page-background * { box-sizing: border-box; }
+
+.partners-add-page .page-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* PAGE TITLE */
+.partners-add-page .page-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 14px 10px;
+}
+
+.partners-add-page .page-separator {
+    width: 100%;
+    max-width: 1190px;
+    height: 2px;
+    border: none;
+    background: #e5e7eb;
+    margin: 10px 0 26px 10px;
+}
+
+/* CARD */
+.partners-add-page .add-form-card {
+    width: 100%;
+    max-width: 1200px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
+    padding: 26px 30px 24px;
+}
+
+/* HEADER */
+.partners-add-page .add-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid #eef0f3;
+}
+
+.partners-add-page .add-form-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.partners-add-page .add-form-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.partners-add-page .add-form-breadcrumb {
+    font-size: 12px;
+    color: #64748b;
+    padding-top: 10px;
+}
+
+/* GRID */
+.partners-add-page .add-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 26px;
+}
+
+/* FIELDS */
+.partners-add-page .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.partners-add-page .form-group label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.partners-add-page .form-group input,
+.partners-add-page .form-group select,
+.partners-add-page .form-group textarea {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+    color: #0f172a;
+    background: #ffffff;
+    outline: none;
+}
+
+/* ✅ Napomena: input-like */
+.partners-add-page .note-group textarea {
+    height: 44px !important;
+    min-height: 44px !important;
+    padding: 0 14px !important;
+    line-height: 44px;
+    resize: none;
+    overflow: hidden;
+}
+
+.partners-add-page .form-group input::placeholder,
+.partners-add-page .form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+.partners-add-page .form-group input:focus,
+.partners-add-page .form-group select:focus,
+.partners-add-page .form-group textarea:focus {
+    border-color: #cbd5e1;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* STATUS + NAPOMENA */
+.partners-add-page .form-row-wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 26px;
+    margin-top: 6px;
+}
+
+/* FOOTER */
+.partners-add-page .add-form-footer {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* PAGINATION */
+.partners-add-page .footer-left {
+    display: flex;
+    gap: 10px;
+}
+
+.partners-add-page .pagination-button {
+    width: 34px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    background: #f8fafc;
+    cursor: pointer;
+    font-weight: 800;
+    color: #0f172a;
+    display: grid;
+    place-items: center;
+}
+
+/* ACTION BUTTONS */
+.partners-add-page .footer-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.partners-add-page .add-form-secondary-btn {
+    background: #f1f5f9;
+    color: #0f172a;
+    border: none;
+    height: 42px;
+    padding: 0 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.partners-add-page .add-form-primary-btn {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    height: 42px;
+    padding: 0 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.partners-add-page .add-form-primary-btn:hover { filter: brightness(0.97); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .partners-add-page .add-form-grid { grid-template-columns: 1fr; }
+    .partners-add-page .form-row-wide { grid-template-columns: 1fr; gap: 18px; }
+    .partners-add-page .add-form-footer { flex-direction: column; align-items: flex-end; gap: 14px; }
+}
+
+/* =====================================================
+   DARK MODE (SCOPED)
+   ===================================================== */
+
+:where(body.theme-dark, .theme-dark) .partners-add-page.page-background {
+    background: #020617 !important;
+    color: #E5E7EB;
+}
+
+:where(body.theme-dark, .theme-dark) .partners-add-page .page-title { color: #FFFFFF; }
+:where(body.theme-dark, .theme-dark) .partners-add-page .page-separator { background: #1F2937; }
+
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-card {
+    background: linear-gradient(to bottom right, #0B1220, #020617);
+    border: 1px solid #1E293B;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.55);
+}
+
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-header { border-bottom: 1px solid #1F2937; }
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-subtitle { color: #94A3B8; }
+
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-title {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-breadcrumb { color: #9CA3AF; }
+
+:where(body.theme-dark, .theme-dark) .partners-add-page .form-group label { color: #E5E7EB; }
+
+:where(body.theme-dark, .theme-dark) .partners-add-page .form-group input,
+:where(body.theme-dark, .theme-dark) .partners-add-page .form-group select,
+:where(body.theme-dark, .theme-dark) .partners-add-page .form-group textarea {
+    background-color: #0F172A;
+    border: 1px solid #1E293B;
+    color: #E5E7EB;
+}
+
+:where(body.theme-dark, .theme-dark) .partners-add-page .form-group input::placeholder,
+:where(body.theme-dark, .theme-dark) .partners-add-page .form-group textarea::placeholder {
+    color: #94A3B8;
+}
+
+/* Strelice u dark modu kao Dodaj Booking (tamne) */
+:where(body.theme-dark, .theme-dark) .partners-add-page .pagination-button {
+    background: #0F172A !important;
+    border: 1px solid #1E293B !important;
+    color: #E5E7EB !important;
+}
+:where(body.theme-dark, .theme-dark) .partners-add-page .pagination-button:hover {
+    background: #1E293B !important;
+}
+
+/* Buttons in dark */
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-secondary-btn {
+    background: #0F172A;
+    color: #E5E7EB;
+    border: 1px solid #1E293B;
+}
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-secondary-btn:hover { background: #1E293B; }
+
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-primary-btn {
+    background: #3B82F6;
+    color: #FFFFFF;
+}
+:where(body.theme-dark, .theme-dark) .partners-add-page .add-form-primary-btn:hover { filter: brightness(1.05); }

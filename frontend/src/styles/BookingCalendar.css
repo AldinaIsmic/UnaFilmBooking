@@ -1,0 +1,345 @@
+.bc-page {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 26px 26px 40px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.bc-page * { box-sizing: border-box; }
+
+.bc-container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.bc-title {
+  margin: 0 0 18px 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* TOP */
+.bc-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.bc-filters {
+  display: flex;
+  gap: 22px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.bc-filter { min-width: 180px; }
+
+.bc-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  margin: 0 0 8px 0;
+}
+
+.bc-select-wrap { position: relative; width: 180px; }
+
+.bc-select {
+  width: 100%;
+  height: 38px;
+  background: #e9edf2;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0 34px 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.bc-caret {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  opacity: 0.7;
+  pointer-events: none;
+  color: #0f172a;
+}
+
+.bc-reset {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #0f172a;
+  background: #ffffff;
+  color: #0f172a;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* MONTH BAR */
+.bc-monthbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0 10px;
+}
+
+.bc-week-spacer { height: 1px; }
+
+.bc-month-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bc-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: #0f172a;
+}
+
+.bc-monthtext {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  padding: 0 6px;
+}
+
+.bc-today {
+  height: 34px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* WEEK HEADERS */
+.bc-weekhead {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin: 6px 0 10px;
+}
+
+.bc-weekday {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  letter-spacing: 0.02em;
+}
+
+/* GRID */
+.bc-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  background: #ffffff;
+}
+
+.bc-cell {
+  height: 92px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  position: relative;
+  overflow: visible; /* BITNO zbog tooltips */
+}
+
+/* hover na datum (cell) */
+.bc-cell:hover {
+  background: #f8fafc;
+  border-color: #dbe3ef;
+}
+
+.bc-cell-hovered {
+  background: #f8fafc;
+  border-color: #dbe3ef;
+}
+
+.bc-empty {
+  background: #fff;
+  opacity: 0.85;
+}
+
+.bc-daynum {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* pills container */
+.bc-pills {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 34px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* pill izgled kao na tvojoj slici */
+.bc-pill {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 4px 10px;     /* ⬅ smanjeno (ranije preveliko) */
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.1;      /* ⬅ KRITIČNO */
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* status */
+.bc-potvrdjeno {
+  background: #bbf7d0;
+  color: #166534;
+}
+
+.bc-na_cekanju {
+  background: #fde68a;
+  color: #92400e;
+}
+
+.bc-odbijeno {
+  background: #fecaca;
+  color: #7f1d1d;
+}
+
+.bc-more {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+  padding-left: 6px;
+}
+
+/* tooltip plavi kao na slici */
+.bc-tooltip {
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3b82f6;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.20);
+  z-index: 999;
+  min-width: 180px;
+  max-width: 260px;
+}
+
+.bc-tooltip-title {
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.bc-tooltip-item {
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+/* responsive */
+@media (max-width: 820px) {
+  .bc-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .bc-reset { align-self: flex-start; }
+  .bc-cell { height: 84px; }
+}
+
+/* DARK MODE */
+body.theme-dark .bc-page {
+  background: #020617;
+  color: #E5E7EB;
+}
+
+body.theme-dark .bc-title { color: #FFFFFF; }
+body.theme-dark .bc-label { color: #94A3B8; }
+
+body.theme-dark .bc-select {
+  background: #0F172A;
+  border: 1px solid #1E293B;
+  color: #E5E7EB;
+}
+
+body.theme-dark .bc-reset {
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  color: #E5E7EB;
+}
+
+body.theme-dark .bc-cell {
+  background: #020617;
+  border: 1px solid #1E293B;
+}
+
+body.theme-dark .bc-cell:hover {
+  background: #0F172A;
+}
+body.theme-dark .bc-daynum { color: #FFFFFF; }
+/* =========================
+   BOOKING CALENDAR – DARK FIX
+========================= */
+
+/* ⛔ ukloni bijelu pozadinu između ćelija */
+body.theme-dark .bc-grid {
+    background: #020617; /* ista kao page */
+}
+
+/* ⛔ ukloni svijetle bordere */
+body.theme-dark .bc-cell {
+    background: #020617;
+    border: 1px solid #1e293b; /* TAMNA linija */
+}
+
+/* hover u dark modu */
+body.theme-dark .bc-cell:hover,
+body.theme-dark .bc-cell-hovered {
+    background: #0f172a;
+    border-color: #334155;
+}
+
+/* prazne ćelije */
+body.theme-dark .bc-empty {
+    background: #020617;
+    border-color: #1e293b;
+}
+
+/* dan broj */
+body.theme-dark .bc-daynum {
+    color: #ffffff;
+}
+body.theme-dark .bc-monthtext {
+    color: #ffffff;
+}

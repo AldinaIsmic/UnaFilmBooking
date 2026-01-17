@@ -1,0 +1,418 @@
+/* =========================
+   ADD BOOKING (LIGHT DEFAULT)
+========================= */
+
+.ab-page {
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 5px 48px 32px 55px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.ab-page * { box-sizing: border-box; }
+
+.ab-page-title {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 0 15px 10px;
+    font-size: 32px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.ab-divider {
+    width: 100%;
+    max-width: 1200px;
+    height: 2px;
+    background: #e5e7eb;
+    border-radius: 2px;
+    margin: 10px 0 25px 2px;
+}
+
+.ab-card {
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 18px 26px rgba(15, 23, 42, 0.18);
+    padding: 22px 26px;
+}
+
+.ab-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6px 2px 14px;
+    border-bottom: 1px solid #eef0f3;
+    margin-bottom: 18px;
+}
+
+.ab-kicker {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.ab-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.ab-right-tag {
+    font-size: 12px;
+    color: #64748b;
+    padding-top: 12px;
+}
+
+.ab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 26px;
+    padding: 2px;
+}
+
+.ab-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+}
+
+/* inputs + selects (LIGHT) */
+.ab-field input,
+.ab-field select {
+    width: 100%;
+    height: 44px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 0 14px;
+    outline: none;
+    font-size: 14px;
+    background: #fff;
+    color: #94a3b8;
+}
+
+.ab-field input::placeholder {
+    color: #94a3b8;
+}
+
+.ab-field input:focus,
+.ab-field select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* select caret */
+.ab-select-wrap {
+    position: relative;
+}
+
+.ab-field select {
+    appearance: none;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.ab-caret {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    pointer-events: none;
+}
+
+/* =========================
+   MUI DATE PICKER (LIGHT)
+   -> da izgleda 1:1 kao select/input
+========================= */
+
+/* root input */
+.ab-date-field .MuiInputBase-root {
+    height: 44px !important;
+    border-radius: 10px !important;
+    background: #fff !important;
+}
+
+/* fieldset border (OVO JE KLJUČ) */
+.ab-date-field fieldset,
+.ab-date-field .MuiOutlinedInput-notchedOutline {
+    border-color: #e5e7eb !important;
+    border-width: 1px !important;
+}
+
+/* hover */
+.ab-date-field .MuiInputBase-root:hover fieldset,
+.ab-date-field .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #3b82f6 !important;
+}
+
+/* focus */
+.ab-date-field .MuiInputBase-root.Mui-focused fieldset,
+.ab-date-field .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12) !important;
+}
+
+/* text / placeholder */
+.ab-date-field input {
+    padding: 0 40px 0 14px !important;
+    height: 44px !important;
+    box-sizing: border-box !important;
+    font-size: 14px !important;
+    color: #94a3b8 !important;
+    background: transparent !important;
+}
+
+.ab-date-field input::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+/* calendar icon */
+.ab-date-field .MuiIconButton-root,
+.ab-date-field .MuiSvgIcon-root {
+    color: #6b7280 !important;
+}
+
+.ab-status {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+}
+
+.ab-radios {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    padding-top: 4px;
+}
+.ab-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #0f172a;
+}
+
+.ab-radio input {
+    width: 14px;
+    height: 14px;
+}
+.ab-footer {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ab-nav {
+    display: flex;
+    gap: 10px;
+}
+/* =========================
+   FOOTER (LIGHT)
+========================= */
+
+.ab-icon-btn {
+    width: 34px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    background: #f8fafc;
+    cursor: pointer;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.ab-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.ab-btn {
+    border: none;
+    height: 42px;
+    padding: 0 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.ab-btn-ghost {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.ab-btn-primary {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.ab-btn-primary:hover {
+    filter: brightness(0.98);
+}
+
+/* responsive */
+@media (max-width: 820px) {
+    .ab-page-title { max-width: 100%; }
+    .ab-card { max-width: 100%; }
+    .ab-grid { grid-template-columns: 1fr; }
+    .ab-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+    .ab-actions { justify-content: flex-end; }
+}
+/*-------------------------------------------------------------------------------*/
+/* =========================================
+   MUI DATEPICKER – DARK MODE OVERRIDE
+   radi SAMO kad je body.theme-dark
+========================================= */
+
+/* POPUP ROOT */
+body.theme-dark .MuiPickersPopper-root {
+    z-index: 2000 !important;
+}
+
+/* GLAVNI PANEL (bijela pozadina problem) */
+body.theme-dark .MuiPickersPopper-root .MuiPaper-root,
+body.theme-dark .MuiPickersPopper-root .MuiPopover-paper {
+    background-color: #020617 !important;
+    color: #e5e7eb !important;
+    border-radius: 14px !important;
+    border: 1px solid #1e293b !important;
+    box-shadow: 0 25px 50px rgba(0,0,0,.7) !important;
+}
+
+/* HEADER (December 2025) */
+body.theme-dark .MuiPickersCalendarHeader-root {
+    color: #e5e7eb !important;
+}
+
+body.theme-dark .MuiPickersCalendarHeader-label {
+    color: #e5e7eb !important;
+    font-weight: 600 !important;
+}
+
+body.theme-dark .MuiPickersArrowSwitcher-button {
+    color: #94a3b8 !important;
+}
+
+/* DANI U SEDMICI (S M T W) */
+body.theme-dark .MuiDayCalendar-weekDayLabel {
+    color: #64748b !important;
+    font-weight: 600 !important;
+}
+
+/* BROJEVI DANA */
+body.theme-dark .MuiPickersDay-root {
+    color: #e5e7eb !important;
+    border-radius: 10px !important;
+}
+
+body.theme-dark .MuiPickersDay-root:hover {
+    background-color: #1e293b !important;
+}
+
+/* DANAS */
+body.theme-dark .MuiPickersDay-today {
+    border: 1px solid #3b82f6 !important;
+}
+
+/* ODABRANI DAN */
+body.theme-dark .MuiPickersDay-root.Mui-selected {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+body.theme-dark .MuiPickersDay-root.Mui-selected:hover {
+    background-color: #2563eb !important;
+}
+
+/* DISABLED DANI */
+body.theme-dark .MuiPickersDay-root.Mui-disabled {
+    color: #475569 !important;
+}
+
+/* =========================================
+   INPUT (TEXT FIELD) – DARK MODE
+========================================= */
+
+body.theme-dark .MuiOutlinedInput-root {
+    background-color: #0f172a !important;
+    border-radius: 10px !important;
+}
+
+body.theme-dark .MuiOutlinedInput-input {
+    color: #e5e7eb !important;
+}
+
+body.theme-dark .MuiOutlinedInput-notchedOutline {
+    border-color: #1e293b !important;
+}
+
+body.theme-dark .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #3b82f6 !important;
+}
+
+body.theme-dark .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.35) !important;
+}
+
+/* PLACEHOLDER */
+body.theme-dark .MuiOutlinedInput-input::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+/* IKONICA */
+body.theme-dark .MuiIconButton-root {
+    color: #94a3b8 !important;
+}
+
+body.theme-dark .ab-datepicker-popper .MuiPaper-root {
+    background: #020617 !important;
+    color: #e5e7eb !important;
+    border: 1px solid #1e293b !important;
+    box-shadow: 0 25px 50px rgba(0,0,0,.7) !important;
+}
+
+body.theme-dark .ab-datepicker-popper .MuiPickersCalendarHeader-label {
+    color: #e5e7eb !important;
+}
+
+body.theme-dark .ab-datepicker-popper .MuiPickersArrowSwitcher-button {
+    color: #94a3b8 !important;
+}
+
+body.theme-dark .ab-datepicker-popper .MuiDayCalendar-weekDayLabel {
+    color: #64748b !important;
+    font-weight: 600 !important;
+}
+
+body.theme-dark .ab-datepicker-popper .MuiPickersDay-root {
+    color: #e5e7eb !important;
+}
+
+body.theme-dark .ab-datepicker-popper .MuiPickersDay-root:hover {
+    background: #1e293b !important;
+}
+
+body.theme-dark .ab-datepicker-popper .MuiPickersDay-root.Mui-selected {
+    background: #3b82f6 !important;
+    color: #fff !important;
+}
+
+body.theme-dark .ab-datepicker-popper .MuiPickersDay-root.Mui-disabled {
+    color: #475569 !important;
+}

@@ -1,0 +1,405 @@
+.bookings-page {
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.bookings-container {
+    max-width: 1600px;
+    padding: 26px 26px 40px;
+}
+
+/* TITLE */
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+}
+
+/* =========================
+   STAT CARDS – kao Dashboard
+   ========================= */
+.stats-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    align-items: stretch;
+}
+
+.stats-row .stat-card {
+    flex: 1;
+    min-width: 220px;
+    height: 128px;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+
+    padding: 22px 26px;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stats-row .stat-number {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.stats-row .stat-label {
+    margin-top: 8px;
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+@media (max-width: 1100px) {
+    .stats-row {
+        flex-wrap: wrap;
+    }
+    .stats-row .stat-card {
+        flex: 1 1 320px;
+    }
+}
+
+/* CONTROLS */
+.bookings-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.controls-right {
+    display: flex;
+    gap: 14px;
+    margin-left: auto;
+}
+
+/* BUTTON */
+.btn-primary {
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+}
+
+/* FILTER SELECTS */
+.filter-select-wrap {
+    position: relative;
+    width: 153px;
+}
+
+.filter-select {
+    width: 100%;
+    height: 40px;
+    background: #ffffff;
+    border: 1px solid #d7dde7;
+    border-radius: 12px;
+    padding: 0 40px 0 14px;
+    font-size: 14px;
+    font-weight: 500;
+    appearance: none;
+    cursor: pointer;
+}
+
+.select-caret {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #0f172a;
+    pointer-events: none;
+}
+
+/* =========================
+   TABLE – LIGHT kao Partneri
+   ========================= */
+.booking-table-wrapper {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #0f172a; /* ✅ isti okvir */
+    box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
+    overflow: hidden;
+    margin-top: 18px;
+}
+
+.booking-table-head,
+.booking-row {
+    display: grid;
+    grid-template-columns:
+    1.3fr 1.3fr 1.3fr 1.3fr 1.3fr 1.3fr 1.3fr 1.3fr 1.3fr;
+    align-items: center;
+}
+
+.booking-table-head {
+    background: #3b82f6;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    height: 44px;
+    border-bottom: 1px solid #0f172a;
+}
+
+.booking-table-head > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 44px;
+    padding: 0;                 /* ⬅ uklonjeno */
+    border-right: 1px solid #0f172a;
+}
+
+.booking-table-head > div:last-child {
+    border-right: none;
+}
+
+/* body */
+.booking-table-body {
+    height: calc(100vh - 360px);
+    min-height: 420px;
+    overflow-y: auto;
+    background: #ffffff;
+}
+
+/* rows */
+.booking-row {
+    height: 44px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.booking-row > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #0f172a;
+}
+
+/* empty rows */
+.booking-row.empty > div {
+    color: transparent;
+}
+
+/* STATUS */
+.status {
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.status.confirmed {
+    background: #bbf7d0;
+    color: #14532d;
+    height: 26px;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25px;
+    padding-top: 1px;
+}
+
+.status.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status.rejected {
+    background: #fecaca;
+    color: #7f1d1d;
+}
+
+/* BUTTON */
+.btn-details {
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    height: 26px;
+}
+
+/* scrollbar LIGHT */
+.booking-table-body::-webkit-scrollbar {
+    width: 12px;
+}
+
+.booking-table-body::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.booking-table-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+    border: 3px solid #f1f5f9;
+}
+
+.btn-delete {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 25px;
+}
+
+.btn-export {
+    background: #22c55e; /* zeleno */
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-export:hover {
+    background: #16a34a;
+}
+
+.modal-header {
+    position: relative;          /* ⬅ ključ */
+    display: flex;
+    align-items: center;
+    justify-content: center;     /* centar za naslov */
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.modal-close {
+    position: absolute;          /* ⬅ izvadi iz flex toka */
+    right: 16px;                 /* skroz desno */
+}
+
+/* =========================
+   DARK MODE – kao Filmovi
+   ========================= */
+body.theme-dark .bookings-page {
+    background: #020617;
+    color: #e5e7eb;
+}
+
+body.theme-dark .stats-row .stat-card {
+    background: linear-gradient(to bottom right, #0b1220, #020617);
+    border: 1px solid #1e293b;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.55);
+}
+
+body.theme-dark .stat-label {
+    color: #94a3b8;
+}
+
+body.theme-dark .filter-select {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    color: #e5e7eb;
+}
+
+body.theme-dark .select-caret {
+    color: #e5e7eb;
+}
+
+/* table wrapper */
+body.theme-dark .booking-table-wrapper {
+    background: #020617;
+    border: 1px solid #1e293b;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* header */
+body.theme-dark .booking-table-head {
+    background: #2563eb;
+    border-bottom: 1px solid #1e293b;
+}
+
+/* 3. HEADER VERTIKALNI DIVIDERI */
+body.theme-dark .booking-table-head > div {
+    border-right: none !important;
+    outline-right: 1px solid #ffffff; /* 🔥 isto rješenje kao kod Movies */
+}
+
+/* rows */
+body.theme-dark .booking-table-body {
+    background: #020617;
+}
+
+body.theme-dark .booking-row {
+    background: #020617;
+    border-bottom: 1px solid #1e293b;
+}
+
+body.theme-dark .booking-row:nth-child(even) {
+    background: #0b1220;
+}
+
+body.theme-dark .booking-row:hover {
+    background: #1e293b;
+}
+
+body.theme-dark .booking-row > div {
+    color: #e5e7eb;
+}
+
+/* scrollbar DARK */
+body.theme-dark .booking-table-body::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+body.theme-dark .booking-table-body::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border: 3px solid #020617;
+}
+/* =========================================
+   BOOKINGS TABLE – DARK MODE (WHITE FRAME)
+   ========================================= */
+
+/* 1. VANJSKI OKVIR */
+body.theme-dark .booking-table-wrapper {
+    border: 1px solid #ffffff !important;
+    background: #020617 !important;
+}
+
+/* 2. HEADER DONJA LINIJA */
+body.theme-dark .booking-table-head {
+    border-bottom: 1px solid #ffffff !important;
+    background: #2563eb !important;
+}
+
+
+body.theme-dark .booking-table-head > div:last-child {
+    outline-right: none !important;
+}
+/* BOOKING – DARK MODE: BIJELE LINIJE IZMEĐU KOLONA (HEADER) */
+body.theme-dark .booking-table-head > div {
+    border-right: 1px solid #ffffff !important;
+}
+
+/* ukloni liniju na zadnjoj koloni */
+body.theme-dark .booking-table-head > div:last-child {
+    border-right: none !important;
+}

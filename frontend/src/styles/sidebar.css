@@ -1,0 +1,71 @@
+.sidebar {
+    position: fixed;        /* ⬅ KLJUČNO */
+    top: 0;
+    left: 0;
+    height: 100vh;          /* puna visina ekrana */
+    width: 75px;
+
+    background: #07162b;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    z-index: 100;           /* da bude iznad contenta */
+}
+
+/* TOP */
+.sidebar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding-top: 25px;
+}
+
+/* BUTTONS */
+.sidebar-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.sidebar-btn img {
+    width: 26px;
+    height: 26px;
+}
+
+/* HOVER (kao JavaFX) */
+.sidebar-btn:hover {
+    background: rgba(43, 116, 255, 0.18);
+}
+
+/* BOTTOM */
+.sidebar-bottom {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 25px;
+}
+
+.sidebar-logout {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.sidebar-logout img {
+    width: 26px;
+    height: 26px;
+}
+
+/* LOGOUT HOVER */
+.sidebar-logout:hover {
+    background: rgba(255, 59, 48, 0.18);
+}

@@ -1,0 +1,177 @@
+/* ROOT */
+.dash-root {
+    min-height: 100vh;              /* ✅ bitno: da body skrola, ne container */
+    display: flex;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* MAIN */
+.dash-main {
+    flex: 1;
+    padding: 0px 48px 32px 0px;
+    background: #ffffff;
+
+    /* ✅ nema unutrašnjeg scrolla */
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* TITLES */
+.app-header-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* MAIN ROW */
+.dashboard-row {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+/* LEFT */
+.dashboard-left {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* WRAPPER (ako ga NE koristiš u JSX, slobodno obriši; ne smeta ni ovako) */
+.dash-left-wrap {
+    width: 100%;
+    max-width: 920px;
+    margin-right: 32px;
+}
+
+/* STAT GRID */
+.stat-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    justify-content: stretch;
+    justify-items: stretch;
+}
+
+/* STAT CARD */
+.stat-grid > .stat-card {
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background: #ffffff;
+
+    padding: 22px 26px;
+    height: 128px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.stat-number {
+    font-size: 44px;
+    font-weight: 700;
+}
+
+.stat-label {
+    margin-top: 6px;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+/* CHARTS */
+.charts-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.chart-box {
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 16px 18px;
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.chart-placeholder {
+    height: 250px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+/* QUICK ACTIONS */
+.quick-actions {
+    width: 260px;
+    flex: 0 0 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.quick-action-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 16px;
+    min-height: 40px;
+
+    border-radius: 14px;
+    background: #e5e7eb;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.quick-action-box:hover {
+    background: #dbeafe;
+}
+
+.quick-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #111827;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    transform: translateY(-1px);
+}
+
+.plus-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+    line-height: 1;
+}
+
+.quick-action-box span,
+.quick-action-box p,
+.quick-action-text {
+    transform: translateY(-2px);
+}

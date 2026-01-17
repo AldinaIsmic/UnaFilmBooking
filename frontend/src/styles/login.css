@@ -1,0 +1,98 @@
+.login-root {
+    height: 100vh;
+    display: flex;
+    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+
+.login-left {
+    width: 45%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-bottom: 120px; /* ⬅ stvara onaj bijeli prostor dole */
+}
+
+.login-logo {
+    width: 385px;          /* ⬅ bilo 320 */
+    height: auto;
+    object-fit: contain;
+    margin-top: 40px;     /* ⬅ malo gore */
+    margin-bottom: -55px;
+}
+
+.login-tagline {
+    margin-top: -20px;      /* ⬅ bilo 80 */
+    font-size: 22px;       /* ⬅ malo manji, elegantnije */
+    color: #6b7280;
+    font-weight: 600;      /* ⬅ BOLD kao na slici */
+    letter-spacing: 0.3px;
+}
+
+/* RIGHT SIDE */
+.login-right {
+    width: 55%;
+    background: #0b1325;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 40px; /* ⬅ forma malo gore */
+}
+
+/* FORM BLOCK */
+.login-card {
+    width: 560px;          /* ⬅ bilo 600 */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.login-input {
+    width: 520px;          /* ⬅ bilo 560 */
+    height: 62px;
+    border-radius: 30px;
+    border: 2px solid #2b5cff;
+    background: #ffffff;
+    padding: 0 22px;
+    font-size: 17px;
+    outline: none;
+}
+
+.login-input::placeholder {
+    color: #9aa4b2;
+}
+
+.login-input:focus {
+    box-shadow: 0 0 0 4px rgba(43, 92, 255, 0.18);
+}
+
+/* BUTTON */
+.login-button {
+    width: 440px;          /* ⬅ malo uži od inputa */
+    height: 62px;
+    border-radius: 32px;
+    border: none;
+    background: #2b74ff;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.login-button:hover {
+    filter: brightness(1.05);
+}
+
+.login-error {
+    width: 520px;
+    color: #ff4d4f;
+    font-size: 14px;
+    text-align: left;
+    margin-top: -8px;
+}
