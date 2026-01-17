@@ -43,11 +43,11 @@ export default function DashboardPage() {
     });
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/dashboard/stats")
+        fetch(`${import.meta.env.VITE_API_URL}/api/dashboard/stats`)
             .then(res => res.json())
             .then(setStats);
 
-        fetch("http://localhost:3000/api/dashboard/charts")
+        fetch(`${import.meta.env.VITE_API_URL}/api/dashboard/charts`)
             .then(res => res.json())
             .then(setCharts);
     }, []);

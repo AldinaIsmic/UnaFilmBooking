@@ -21,7 +21,7 @@ export default function MoviesPage() {
 
     // FETCH MOVIES
     useEffect(() => {
-        fetch("http://localhost:3000/api/movies")
+        fetch(`${import.meta.env.VITE_API_URL}/api/movies`)
             .then(res => {
                 if (!res.ok) throw new Error("Greška pri dohvaćanju filmova");
                 return res.json();
@@ -64,7 +64,7 @@ export default function MoviesPage() {
         if (!window.confirm("Jesi li sigurna da želiš obrisati ovaj film?")) return;
 
         try {
-            const res = await fetch(`http://localhost:3000/api/movies/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${id}`, {
                 method: "DELETE"
             });
 

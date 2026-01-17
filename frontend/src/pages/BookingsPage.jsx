@@ -45,13 +45,13 @@ export default function BookingsPage() {
     // =========================
     const fetchData = () => {
         fetch(
-            `http://localhost:3000/api/bookings?userId=${user.id}&role=${user.role}`
+            `${import.meta.env.VITE_API_URL}/api/bookings?userId=${user.id}&role=${user.role}`
         )
             .then((res) => res.json())
             .then(setBookings);
 
         fetch(
-            `http://localhost:3000/api/bookings/stats?userId=${user.id}&role=${user.role}`
+            `${import.meta.env.VITE_API_URL}/api/bookings/stats?userId=${user.id}&role=${user.role}`
         )
             .then((res) => res.json())
             .then(setStats);
@@ -90,7 +90,7 @@ export default function BookingsPage() {
 
         try {
             const res = await fetch(
-                `http://localhost:3000/api/bookings/${id}?userId=${user.id}&role=${user.role}`,
+                `${import.meta.env.VITE_API_URL}/api/bookings/${id}?userId=${user.id}&role=${user.role}`,
                 {
                     method: "DELETE",
                 }

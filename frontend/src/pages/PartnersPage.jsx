@@ -17,8 +17,8 @@ export default function PartnersPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/partners")
-        .then(res => {
+      fetch(`${import.meta.env.VITE_API_URL}/api/partners`)
+          .then(res => {
           if (!res.ok) throw new Error("Greška pri dohvaćanju");
           return res.json();
         })
@@ -41,7 +41,7 @@ export default function PartnersPage() {
         if (!window.confirm("Da li ste sigurni da želite obrisati partnera?")) return;
 
         try {
-            const res = await fetch(`http://localhost:3000/api/partners/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/partners/${id}`, {
                 method: "DELETE"
             });
 

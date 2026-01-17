@@ -27,11 +27,11 @@ export default function AddBookingPage() {
     });
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/movies")
+        fetch(`${import.meta.env.VITE_API_URL}/api/movies`)
             .then(res => res.json())
             .then(setFilms);
 
-        fetch("http://localhost:3000/api/partners")
+        fetch(`${import.meta.env.VITE_API_URL}/api/partners`)
             .then(res => res.json())
             .then(setPartners);
     }, []);
@@ -65,7 +65,7 @@ export default function AddBookingPage() {
         };
 
         try {
-            const res = await fetch("http://localhost:3000/api/bookings", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/bookings`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)

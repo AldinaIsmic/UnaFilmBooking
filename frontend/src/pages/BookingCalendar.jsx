@@ -42,8 +42,8 @@ export default function BookingCalendarPage() {
   const [hoverDay, setHoverDay] = useState(null); // tooltip for day
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/calendar")
-        .then((res) => res.json())
+      fetch(`${import.meta.env.VITE_API_URL}/api/calendar`)
+          .then((res) => res.json())
         .then((data) => setBookings(data))
         .catch(() => setBookings([]));
   }, []);

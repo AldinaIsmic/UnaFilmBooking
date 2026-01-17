@@ -2,16 +2,14 @@
 -- UNA FILM BOOKING – INIT SCRIPT
 -- ===============================
 
-CREATE DATABASE IF NOT EXISTS una_film_booking
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE una_film_booking;
+-- ⚠️ NEMA CREATE DATABASE
+-- ⚠️ NEMA USE database
+-- phpMyAdmin je već u bazi: unafilm_booking
 
 -- 1) Ugasi FK provjeru da DROP radi bez problema
 SET FOREIGN_KEY_CHECKS = 0;
 
--- 2) Drop redoslijed: prvo child tabela (bookings), pa parent (partners/films/users)
+-- 2) Drop redoslijed: prvo child tabela, pa parent
 DROP TABLE IF EXISTS bookings;
 DROP TABLE IF EXISTS partners;
 DROP TABLE IF EXISTS films;
@@ -79,7 +77,12 @@ CREATE TABLE bookings (
   created_by INT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-  CONSTRAINT fk_booking_film FOREIGN KEY (film_id) REFERENCES films(id),
-  CONSTRAINT fk_booking_partner FOREIGN KEY (partner_id) REFERENCES partners(id),
-  CONSTRAINT fk_booking_user FOREIGN KEY (created_by) REFERENCES users(id)
+  CONSTRAINT fk_booking_film
+    FOREIGN KEY (film_id) REFERENCES films(id),
+
+  CONSTRAINT fk_booking_partner
+    FOREIGN KEY (partner_id) REFERENCES partners(id),
+
+  CONSTRAINT fk_booking_user
+    FOREIGN KEY (created_by) REFERENCES users(id)
 );
