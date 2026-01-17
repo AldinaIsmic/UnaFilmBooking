@@ -1,48 +1,37 @@
-import { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
 
-function App() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ username, password })
-        });
-
-        const data = await res.json();
-        console.log(data);
-    };
+export default function App() {
+    const user = JSON.parse(localStorage.getItem("user"));
 
     return (
-        <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <form onSubmit={handleLogin} style={{ width: 300 }}>
-                <h2>UNA Film Distribucija</h2>
+        <Routes>
+            <Route path="/login" element={<LoginPage />} />
 
-                <input
-                    placeholder="Username"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    style={{ width: "100%", marginBottom: 10 }}
-                />
+            <Route
+                path="/admin"
+                element={
+                    user?.role === "ADMIN"
+                        ? <DashboardPage />
+                        : <Navigate to="/login" replace />
+                }
+            />
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    style={{ width: "100%", marginBottom: 10 }}
-                />
+            <Route
+                path="/referent"
+                element={
+                    user?.role === "REFERENT"
+                        ? <DashboardPage />
+                        : <Navigate to="/login" replace />
+                }
+            />
 
-                <button style={{ width: "100%" }}>Login</button>
-            </form>
-        </div>
+            {/* default */}
+            <Route
+                path="*"
+                element={<Navigate to="/login" replace />}
+            />
+        </Routes>
     );
 }
-
-export default App;

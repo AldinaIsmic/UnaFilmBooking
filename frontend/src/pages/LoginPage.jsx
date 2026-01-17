@@ -23,12 +23,16 @@ export default function LoginPage() {
             return;
         }
 
-        const user = await res.json();
-        localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("token", user.token);
+        const data = await res.json();
 
-        if (user.role === "ADMIN") navigate("/admin");
-        else navigate("/referent");
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        if (data.user.role === "ADMIN") {
+            navigate("/admin", { replace: true });
+        } else {
+            navigate("/referent", { replace: true });
+        }
     };
 
     return (

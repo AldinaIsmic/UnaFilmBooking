@@ -20,49 +20,43 @@ import DodajPartnera from "./pages/DodajPartnera";
 import AdminLayout from "./layouts/AdminLayout";
 import DashboardPage from "./pages/DashboardPage";
 
-/* ===============================
-   THEME INIT (LIGHT by default)
-   =============================== */
 const savedTheme = localStorage.getItem("theme");
-
 if (savedTheme === "dark") {
-  document.body.classList.add("theme-dark");
+    document.body.classList.add("theme-dark");
 } else {
-  document.body.classList.remove("theme-dark"); // LIGHT
+    document.body.classList.remove("theme-dark");
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<LoginPage />} />
+    <BrowserRouter>
+        <Routes>
 
-                {/* SVE što ima sidebar mora biti OVDJE */}
-                <Route element={<AdminLayout />}>
+            {/* LOGIN */}
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
 
-                    {/* ADMIN */}
-                    <Route path="/admin" element={<AdminPage />}>
-                        <Route index element={<DashboardPage />} />
-                    </Route>
+            {/* SVE SA SIDEBAROM */}
+            <Route element={<AdminLayout />}>
 
-                    {/* REFERENT */}
-                    <Route path="/referent" element={<ReferentPage />}>
-                        <Route index element={<DashboardPage />} />
-                    </Route>
-
-                    {/* SHARED */}
-                    <Route path="/partners" element={<PartnersPage />} />
-                    <Route path="/movies" element={<MoviesPage />} />
-                    <Route path="/bookings" element={<BookingsPage />} />
-                    <Route path="/bookings/add" element={<DodajBooking />} />
-                    <Route path="/movies/add" element={<DodajFilm />} />
-                    <Route path="/partners/add" element={<DodajPartnera />} />
-                    <Route path="/settings" element={<SettingsPage />} />
-                    <Route path="/calendar" element={<BookingCalendar />} />
-
+                <Route path="/admin" element={<AdminPage />}>
+                    <Route index element={<DashboardPage />} />
                 </Route>
-            </Routes>
-        </BrowserRouter>
 
-    </React.StrictMode>
+                <Route path="/referent" element={<ReferentPage />}>
+                    <Route index element={<DashboardPage />} />
+                </Route>
+
+                <Route path="/partners" element={<PartnersPage />} />
+                <Route path="/movies" element={<MoviesPage />} />
+                <Route path="/bookings" element={<BookingsPage />} />
+                <Route path="/bookings/add" element={<DodajBooking />} />
+                <Route path="/movies/add" element={<DodajFilm />} />
+                <Route path="/partners/add" element={<DodajPartnera />} />
+                <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/calendar" element={<BookingCalendar />} />
+
+            </Route>
+
+        </Routes>
+    </BrowserRouter>
 );
