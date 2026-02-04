@@ -5,19 +5,158 @@
     const pool = require("./db");
     const bcrypt = require("bcrypt");
     const jwt = require("jsonwebtoken");
+    const nodemailer = require("nodemailer");
+    const multer = require("multer");
 
-
+    const upload = multer({ storage: multer.memoryStorage() });
 
     const app = express();
 
     app.use(cors({
-        origin: [
-            "http://localhost:5173",
-            "http://test.unafilm.ba"
-        ],
-        credentials: true
+        origin: "http://localhost:5173"
     }));
     app.use(express.json());
+
+    const transporter = nodemailer.createTransport({
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
+        secure: false,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+
+    app.post(
+        "/api/bookings/import-pdf/preview",
+        upload.single("pdf"),
+        async (req, res) => {
+            try {
+                if (!req.file) {
+                    return res.status(400).json({ message: "PDF nije poslan" });
+                }
+
+                // ✅ OVAKO SE KORISTI pdf-parse
+                const data = await pdfParse(req.file.buffer);
+                const text = data.text;
+
+                console.log("📄 PDF TEXT:\n", text);
+
+                // =====================
+                // LINIJE
+                // =====================
+                const lines = text
+                    .split("\n")
+                    .map(l => l.trim())
+                    .filter(Boolean);
+
+                if (lines.length === 0) {
+                    return res.status(400).json({ message: "PDF je prazan ili nečitljiv" });
+                }
+
+                // =====================
+                // PARTNER = prva linija
+                // =====================
+                const partner = lines[0];
+
+                // =====================
+                // DATUM IZVJEŠTAJA
+                // npr: "od 22.01.2026"
+                // =====================
+                const dateMatch = text.match(/od\s+(\d{2}\.\d{2}\.\d{4})/i);
+                if (!dateMatch) {
+                    return res.status(400).json({ message: "Datum izvještaja nije pronađen" });
+                }
+
+                const [d, m, y] = dateMatch[1].split(".");
+                const datum = `${y}-${m}-${d}`;
+
+                // =====================
+                // NAZIV FILMA
+                // prva "smislena" linija poslije partnera
+                // =====================
+                const film = lines.find(l =>
+                    l !== partner &&
+                    !/dnevni izvještaj/i.test(l) &&
+                    !/una film/i.test(l) &&
+                    !/drs/i.test(l) &&
+                    !/^\d{2}:\d{2}$/.test(l)
+                );
+
+                if (!film) {
+                    return res.status(400).json({ message: "Naziv filma nije pronađen" });
+                }
+
+                // =====================
+                // BROJ ULAZNICA
+                // =====================
+                const ticketsMatch = text.match(/Zbroj:\s*(\d+)/i);
+                if (!ticketsMatch) {
+                    return res.status(400).json({ message: "Broj ulaznica nije pronađen" });
+                }
+
+                const broj_karata = Number(ticketsMatch[1]);
+
+                // =====================
+                // CIJENA KARTE (npr 7,50)
+                // =====================
+                const priceMatch = text.match(/(\d+,\d{2})/);
+                if (!priceMatch) {
+                    return res.status(400).json({ message: "Cijena karte nije pronađena" });
+                }
+
+                const cijena_karte = Number(priceMatch[1].replace(",", "."));
+
+                // =====================
+                // PREVIEW
+                // =====================
+                res.json({
+                    preview: [
+                        {
+                            film,
+                            partner,
+                            datum_od: datum,
+                            datum_do: datum,
+                            broj_karata,
+                            cijena_karte,
+                            status: "POTVRDJENO"
+                        }
+                    ]
+                });
+
+            } catch (err) {
+                console.error("PDF PREVIEW ERROR:", err);
+                res.status(500).json({ message: "Greška pri obradi PDF-a" });
+            }
+        }
+    );
+
+    const sendEmail = async (subject, text, html = null) => {
+        try {
+            await transporter.sendMail({
+                from: `"UNA Film Booking" <${process.env.EMAIL_USER}>`,
+                to: process.env.EMAIL_TO,
+                subject,
+                text,          // plain text (fallback)
+                html: html || undefined // HTML ako ga pošalješ
+            });
+            console.log("📩 Email poslan");
+        } catch (err) {
+            console.error("❌ Email error:", err.message);
+        }
+    };
+
+    const normalizeStatus = (status) => {
+        if (!status) return "NA_CEKANJU";
+
+        const s = status.toString().toLowerCase();
+
+        if (s.includes("potvr")) return "POTVRDJENO";
+        if (s.includes("odbij")) return "ODBIJENO";
+        if (s.includes("cek")) return "NA_CEKANJU";
+
+        return "NA_CEKANJU";
+    };
 
     // TEST ROOT
     app.get("/", (req, res) => {
@@ -49,13 +188,14 @@
                     kontakt_osoba,
                     email,
                     telefon,
+                    napomena,
                     IFNULL(active, 1) AS active
                 FROM partners
             `);
 
             res.json(rows);
         } catch (err) {
-            console.error("PARTNERS ERROR:", err); // 🔥 BITNO
+            console.error("PARTNERS ERROR:", err);
             res.status(500).json({
                 message: "Greška pri dohvaćanju partnera",
                 error: err.message
@@ -87,19 +227,10 @@
             }
 
             // ❗ nikad ne šaljemo hash nazad
-            const token = jwt.sign(
-                { id: user.id, role: user.role },
-                process.env.JWT_SECRET,
-                { expiresIn: "7d" }
-            );
-
             res.json({
-                token,
-                user: {
-                    id: user.id,
-                    username: user.username,
-                    role: user.role
-                }
+                id: user.id,
+                username: user.username,
+                role: user.role
             });
 
         } catch (err) {
@@ -125,7 +256,8 @@
                     trajanje_min,
                     godina_distribucije,
                     zanr,
-                    status
+                    status,
+                    napomena
                 FROM films
             `);
 
@@ -154,10 +286,12 @@
                 b.id,
                 f.naziv AS film,
                 p.naziv AS partner,
-                b.datum_od,
-                b.datum_do,
+                DATE_FORMAT(b.datum_od, '%Y-%m-%d') AS datum_od,
+                DATE_FORMAT(b.datum_do, '%Y-%m-%d') AS datum_do,
                 b.tip_materijala,
                 b.status,
+                b.broj_karata,
+                b.cijena_karte,
                 b.created_by AS created_by_id,
                 u.username AS created_by,
                 DATE(b.created_at) AS created_at
@@ -187,6 +321,145 @@
             });
         }
     });
+
+    app.post("/api/bookings/import", async (req, res) => {
+        const rows = req.body;
+
+        if (!Array.isArray(rows) || rows.length === 0) {
+            return res.status(400).json({ message: "Nema podataka za import" });
+        }
+
+        try {
+            for (const r of rows) {
+
+                // 1️⃣ NAĐI FILM ID
+                const [filmRows] = await pool.query(
+                    "SELECT id FROM films WHERE naziv = ?",
+                    [r.film]
+                );
+
+                if (filmRows.length === 0) {
+                    throw new Error(`Film ne postoji: ${r.film}`);
+                }
+
+                const film_id = filmRows[0].id;
+
+                // 2️⃣ NAĐI PARTNER ID
+                const [partnerRows] = await pool.query(
+                    "SELECT id FROM partners WHERE naziv = ?",
+                    [r.partner]
+                );
+
+                if (partnerRows.length === 0) {
+                    throw new Error(`Partner ne postoji: ${r.partner}`);
+                }
+
+                const partner_id = partnerRows[0].id;
+
+                // 3️⃣ INSERT U BOOKINGS
+                await pool.query(
+                    `INSERT INTO bookings
+                (film_id, partner_id, datum_od, datum_do, tip_materijala, status, broj_karata, cijena_karte, created_by)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                    [
+                        film_id,
+                        partner_id,
+                        r.datum_od || null,
+                        r.datum_do || null,
+                        r.tip_materijala,
+                        normalizeStatus(r.status),
+                        r.broj_karata,
+                        r.cijena_karte,
+                        req.user?.id || 1 // ili neki default admin ID
+                    ]
+                );
+            }
+
+            res.status(201).json({
+                message: "Import uspješan",
+                imported: rows.length
+            });
+
+        } catch (err) {
+            console.error("❌ IMPORT ERROR:", err.message);
+            res.status(500).json({ message: err.message });
+        }
+    });
+
+    app.post("/api/bookings/import-report", async (req, res) => {
+        console.log("✅ HIT /import-report", req.query);
+        console.log("✅ BODY:", req.body);
+
+        const rows = req.body;
+        const { userId, role } = req.query;
+
+        if (role !== "REFERENT") {
+            return res.status(403).json({
+                message: "Samo referent može importovati izvještaj"
+            });
+        }
+
+        if (!Array.isArray(rows) || rows.length === 0) {
+            return res.status(400).json({
+                message: "Nema podataka za import"
+            });
+        }
+
+        try {
+            for (const r of rows) {
+
+                if (!r.booking_id) {
+                    throw new Error("Nedostaje booking_id");
+                }
+
+                if (Number(r.broj_karata) <= 0 || Number(r.cijena_karte) < 0) {
+                    throw new Error("Neispravni podaci u XLS fajlu");
+                }
+
+                // 🔒 provjera da je booking referentov
+                const [[booking]] = await pool.query(
+                    `SELECT id, created_by FROM bookings WHERE id = ?`,
+                    [r.booking_id]
+                );
+
+                if (!booking) {
+                    throw new Error(`Booking ne postoji (ID ${r.booking_id})`);
+                }
+
+                if (booking.created_by != userId) {
+                    throw new Error("Nemaš pravo ažurirati ovaj booking");
+                }
+
+                // ✅ UPDATE SAMO IZVJEŠTAJA
+                await pool.query(
+                    `
+                UPDATE bookings
+                SET
+                    broj_karata = ?,
+                    cijena_karte = ?
+                WHERE id = ?
+                `,
+                    [
+                        Number(r.broj_karata),
+                        Number(r.cijena_karte),
+                        r.booking_id
+                    ]
+                );
+            }
+
+            res.status(200).json({
+                message: "Izvještaj uspješno importovan",
+                updated: rows.length
+            });
+
+        } catch (err) {
+            console.error("❌ IMPORT REPORT ERROR:", err.message);
+            res.status(500).json({
+                message: err.message
+            });
+        }
+    });
+
 
 
     // ==============================
@@ -234,8 +507,8 @@
             const [rows] = await pool.query(`
                 SELECT
                     b.id,
-                    b.datum_od,
-                    b.datum_do,
+                    DATE_FORMAT(b.datum_od, '%Y-%m-%d') AS datum_od,
+                    DATE_FORMAT(b.datum_do, '%Y-%m-%d') AS datum_do,
                     b.status,
                     b.tip_materijala,
                     f.naziv AS film,
@@ -265,37 +538,97 @@
                 tip_materijala,
                 status,
                 napomena,
-                created_by
+                created_by,
+                broj_karata,
+                cijena_karte
             } = req.body;
 
+            // =========================
+            // VALIDACIJA
+            // =========================
             if (!film_id || !partner_id || !datum_od || !datum_do) {
                 return res.status(400).json({
                     message: "Nedostaju obavezna polja"
                 });
             }
+            const safeBrojKarata = Number(broj_karata) || 0;
+            const safeCijena = Number(cijena_karte) || 0;
 
+            // =========================
+            // INSERT U BAZU (BITNO)
+            // =========================
             const [result] = await pool.query(
-                `
-                INSERT INTO bookings
-                (film_id, partner_id, datum_od, datum_do, tip_materijala, status, napomena, created_by)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                `,
+                `INSERT INTO bookings
+            (film_id, partner_id, datum_od, datum_do, tip_materijala, status, napomena, created_by, broj_karata, cijena_karte)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     film_id,
                     partner_id,
                     datum_od,
                     datum_do,
-                    tip_materijala || "DCP",
-                    status || "NA_CEKANJU",
-                    napomena || null,
-                    created_by || 1
+                    tip_materijala,
+                    status,
+                    napomena || "",
+                    created_by,
+                    safeBrojKarata,
+                    safeCijena
                 ]
             );
 
+            // =========================
+            // ODGOVOR FRONTENDU
+            // =========================
             res.status(201).json({
                 message: "Booking uspješno dodan",
                 id: result.insertId
             });
+
+            // =================================================
+            // ⏳ SVE ISPOD IDE U POZADINI (NE BLOKIRA UI)
+            // =================================================
+
+            // FILM
+            const [[filmRow]] = await pool.query(
+                "SELECT naziv FROM films WHERE id = ?",
+                [film_id]
+            );
+
+            // PARTNER
+            const [[partnerRow]] = await pool.query(
+                "SELECT naziv FROM partners WHERE id = ?",
+                [partner_id]
+            );
+
+            // USER ROLE
+            const [[user]] = await pool.query(
+                "SELECT role FROM users WHERE id = ?",
+                [created_by]
+            );
+
+            if (user?.role === "REFERENT") {
+                const emailText = `
+📌 NOVI BOOKING DODAN
+
+🎬 Film: ${filmRow?.naziv || "Nepoznato"}
+🏢 Partner: ${partnerRow?.naziv || "Nepoznato"}
+
+📅 Period:
+- Od: ${datum_od}
+- Do: ${datum_do}
+
+📦 Tip materijala: ${tip_materijala || "DCP"}
+📌 Status: ${status || "NA ČEKANJU"}
+📝 Napomena: ${napomena || "Nema"}
+            `;
+
+                // EMAIL ASYNC (NE BLOKIRA UI)
+                sendEmail(
+                    "📩 Novi booking dodan",
+                    emailText
+                ).catch(err =>
+                    console.error("EMAIL ERROR:", err.message)
+                );
+            }
 
         } catch (err) {
             console.error("ADD BOOKING ERROR:", err);
@@ -305,6 +638,7 @@
             });
         }
     });
+
 
     // ==============================
     // MOVIES – CREATE
@@ -642,7 +976,22 @@
 
             // provjera da li booking postoji
             const [[booking]] = await pool.query(
-                "SELECT created_by FROM bookings WHERE id = ?",
+                `
+                    SELECT
+                        b.id,
+                        b.created_by,
+                        f.naziv AS film_naziv,
+                        p.naziv AS partner_naziv,
+                        b.datum_od,
+                        b.datum_do,
+                        b.tip_materijala,
+                        b.status,
+                        b.napomena
+                    FROM bookings b
+                             LEFT JOIN films f ON b.film_id = f.id
+                             LEFT JOIN partners p ON b.partner_id = p.id
+                    WHERE b.id = ?
+                `,
                 [id]
             );
 
@@ -660,6 +1009,33 @@
             await pool.query("DELETE FROM bookings WHERE id = ?", [id]);
 
             res.json({ success: true });
+
+            // ✅ Mail šaljemo SAMO ako REFERENT briše SVOJ booking
+            if (role === "REFERENT" && booking.created_by == userId) {
+
+                const emailText = `
+                🗑️ BOOKING OBRISAN
+                
+                🎬 Film: ${booking.film_naziv || "Nepoznato"}
+                🏢 Partner: ${booking.partner_naziv || "Nepoznato"}
+                
+                📅 Period:
+                - Od: ${booking.datum_od}
+                - Do: ${booking.datum_do}
+                
+                📦 Tip materijala: ${booking.tip_materijala}
+                📌 Status: ${booking.status}
+                📝 Napomena: ${booking.napomena || "Nema"}
+            `;
+
+                // 🔥 EMAIL ASYNC (NE BLOKIRA UI)
+                sendEmail(
+                    "🗑️ Booking obrisan",
+                    emailText
+                ).catch(err =>
+                    console.error("EMAIL DELETE ERROR:", err.message)
+                );
+            }
 
         } catch (err) {
             console.error("DELETE BOOKING ERROR:", err);
@@ -697,13 +1073,7 @@
     initDatabase();
 }
 
-    
-    const PORT = process.env.PORT || 3000;
+    const PORT = 3000;
     app.listen(PORT, () => {
-        console.log(`Server pokrenut na portu ${PORT}`);
+        console.log(`Server pokrenut na http://localhost:${PORT}`);
     });
-
-    app.get("/health", (req, res) => {
-        res.json({ status: "OK", service: "UNA Film API" });
-    });
-

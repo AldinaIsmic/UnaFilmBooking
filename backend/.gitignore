@@ -1,0 +1,9 @@
+# dependencies
+node_modules
+
+# environment files
+.env
+.env.production
+
+# logs (optional, ali ok)
+npm-debug.log*
