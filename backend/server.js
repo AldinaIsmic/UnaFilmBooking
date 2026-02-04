@@ -26,6 +26,7 @@
     app.options("*", cors(corsOptions));
     app.use(express.json());
 
+    console.log("CORS VERSION 2026-02-04 A");
 
     const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
