@@ -31,11 +31,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
         <Routes>
 
-            {/* LOGIN */}
+
             <Route path="/" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
 
-            {/* SVE SA SIDEBAROM */}
             <Route element={<AdminLayout />}>
 
                 <Route path="/admin" element={<AdminPage />}>

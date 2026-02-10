@@ -1,16 +1,8 @@
-/* ===============================
-   GLOBAL DARK THEME (WEB)
-   Aktivira se sa body.theme-dark
-   =============================== */
-
 body.theme-dark {
     background: #020617;
     color: #e5e7eb;
 }
 
-/* =====================================================
-   PARTNERI – DARK VARS (ključ da partners.css automatski potamni)
-   ===================================================== */
 body.theme-dark .partners-page {
     --p-bg: #020617;
     --p-text: #e5e7eb;
@@ -23,7 +15,7 @@ body.theme-dark .partners-page {
     --p-card-border: #1f2937;
     --p-card-shadow: none;
 
-    --p-head-bg: #2563eb;          /* može i #3b82f6 ako hoćeš jače */
+    --p-head-bg: #2563eb;
     --p-head-text: #ffffff;
     --p-head-divider: rgba(255, 255, 255, 0.10);
 
@@ -34,7 +26,6 @@ body.theme-dark .partners-page {
     --p-scroll-thumb: #334155;
 }
 
-/* (sigurnosno) ništa u dark modu ne smije praviti svoj scrollbar */
 body.theme-dark #root,
 body.theme-dark .app-root,
 body.theme-dark .admin-layout,
@@ -48,7 +39,6 @@ body.theme-dark .main-content {
     color: #e5e7eb;
 }
 
-/* sve stranice */
 body.theme-dark .bookings-page,
 body.theme-dark .movies-page,
 body.theme-dark .partners-page,
@@ -58,7 +48,6 @@ body.theme-dark .admin-page {
     background: #020617;
 }
 
-/* NASLOVI */
 body.theme-dark h1,
 body.theme-dark h2,
 body.theme-dark h3,
@@ -66,14 +55,12 @@ body.theme-dark .page-title {
     color: #ffffff;
 }
 
-/* TEKST */
 body.theme-dark p,
 body.theme-dark span,
 body.theme-dark label {
     color: #d1d5db;
 }
 
-/* KARTICE */
 body.theme-dark .stat-card,
 body.theme-dark .settings-card,
 body.theme-dark .add-form-card,
@@ -83,7 +70,6 @@ body.theme-dark .dashboard-card {
     box-shadow: none;
 }
 
-/* INPUTI */
 body.theme-dark input,
 body.theme-dark select,
 body.theme-dark textarea {
@@ -97,7 +83,6 @@ body.theme-dark textarea::placeholder {
     color: #94a3b8;
 }
 
-/* BUTTONS */
 body.theme-dark .btn-primary {
     background: #2563eb;
     color: #ffffff;
@@ -108,7 +93,6 @@ body.theme-dark .btn-secondary {
     color: #e5e7eb;
 }
 
-/* TABLE */
 body.theme-dark .booking-table-wrapper,
 body.theme-dark .films-table-wrapper,
 body.theme-dark .partners-table-wrapper,
@@ -120,14 +104,11 @@ body.theme-dark .movies-table .table-head {
     background: #2563eb;
     border-bottom: 1px solid #FFFFFF;
 }
-/* MOVIES – BIJELI OKVIR U DARK MODE */
 body.theme-dark .movies-page .movies-table {
-    background: #ffffff !important;   /* cijeli okvir bijel */
+    background: #ffffff !important;
     border: 1px solid #ffffff !important;
 }
 
-
-/* booking table head / rows */
 body.theme-dark .booking-table-head {
     background: #0f172a;
     border-bottom: 1px solid #1f2937;
@@ -144,7 +125,6 @@ body.theme-dark .booking-row > div {
     color: #e5e7eb;
 }
 
-/* STATUS PILL */
 body.theme-dark .status.confirmed {
     background: #22c55e;
     color: #020617;
@@ -155,7 +135,6 @@ body.theme-dark .status.pending {
     color: #020617;
 }
 
-/* CALENDAR */
 body.theme-dark .bc-cell {
     background: #0b1220;
     border-color: #1f2937;
@@ -165,10 +144,6 @@ body.theme-dark .bc-daynum,
 body.theme-dark .bc-weekday {
     color: #ffffff;
 }
-
-/* =====================================================
-   DASHBOARD – DARK MODE OVERRIDE
-   ===================================================== */
 
 body.theme-dark .dash-main {
     background: #020617 !important;
@@ -230,10 +205,6 @@ body.theme-dark .quick-action-box span,
 body.theme-dark .quick-action-box p {
     color: #e5e7eb;
 }
-
-/* =====================================================
-   ADD BOOKING PAGE – DARK MODE OVERRIDE
-   ===================================================== */
 
 body.theme-dark .ab-page {
     background: #020617 !important;
@@ -325,20 +296,15 @@ body.theme-dark .ab-btn-primary {
 body.theme-dark .ab-btn-primary:hover {
     filter: brightness(1.05);
 }
-/* =====================================================
-   PARTNERS – DARK FIX (tabela + kontrole)
-   ===================================================== */
 
 body.theme-dark .partners-page {
     background: #020617 !important;
 }
 
-/* naslovi */
 body.theme-dark .partners-title {
     color: #ffffff !important;
 }
 
-/* search + select */
 body.theme-dark .partners-page .search-wrap,
 body.theme-dark .partners-page .select {
     background: #0f172a !important;
@@ -359,14 +325,12 @@ body.theme-dark .partners-page .search-input::placeholder {
     color: #94a3b8 !important;
 }
 
-/* tabela container */
 body.theme-dark .partners-page .partners-table {
     background: #0b1220 !important;
     border: 1px solid #FFFFFF !important;
     box-shadow: none !important;
 }
 
-/* head ostaje plav, samo linije prilagodi */
 body.theme-dark .partners-page .partners-table .table-head {
     border-bottom: 1px solid #FFFFFF !important;
     background: #2563eb;
@@ -379,7 +343,7 @@ body.theme-dark .partners-page .partners-table .th {
 body.theme-dark .partners-page .partners-table .table-head .th:last-child {
     border-right: none !important;
 }
-/* body + redovi */
+
 body.theme-dark .partners-page .partners-table .table-body {
     background: #0b1220 !important;
 }
@@ -388,17 +352,14 @@ body.theme-dark .partners-page .partners-table .table-row {
     border-bottom: 1px solid #1f2937 !important;
 }
 
-/* ćelije */
 body.theme-dark .partners-page .partners-table .td {
     color: #e5e7eb !important;
 }
 
-/* hover */
 body.theme-dark .partners-page .partners-table .table-row:hover .td {
     background: #0f172a !important;
 }
 
-/* scrollbar u tabeli */
 body.theme-dark .partners-page .partners-table .table-body::-webkit-scrollbar-track {
     background: #0b1220 !important;
 }
@@ -407,9 +368,6 @@ body.theme-dark .partners-page .partners-table .table-body::-webkit-scrollbar-th
     background: #334155 !important;
     border: 3px solid #0b1220 !important;
 }
-/* =========================
-   DATE PICKER – DARK MODE (FINAL FIX)
-========================= */
 
 body.theme-dark .ab-date-field .MuiFormControl-root,
 body.theme-dark .ab-date-field .MuiInputBase-root {
@@ -417,61 +375,48 @@ body.theme-dark .ab-date-field .MuiInputBase-root {
     border-radius: 10px;
 }
 
-/* outline */
 body.theme-dark .ab-date-field fieldset {
     border-color: #1e293b !important;
 }
 
-/* input tekst */
 body.theme-dark .ab-date-field input {
     background-color: transparent !important;
     color: #e5e7eb !important;
 }
 
-/* placeholder */
 body.theme-dark .ab-date-field input::placeholder {
     color: #94a3b8 !important;
     opacity: 1 !important;
 }
 
-/* ikonica */
 body.theme-dark .ab-date-field .MuiIconButton-root,
 body.theme-dark .ab-date-field .MuiSvgIcon-root {
     color: #94a3b8 !important;
 }
 
-/* hover */
 body.theme-dark .ab-date-field .MuiInputBase-root:hover fieldset {
     border-color: #2563eb !important;
 }
 
-/* focus */
 body.theme-dark .ab-date-field .MuiInputBase-root.Mui-focused fieldset {
     border-color: #2563eb !important;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35) !important;
 }
-/* TEKST U DATE PICKERU */
+
 body.theme-dark .ab-date-field .MuiOutlinedInput-input {
     color: #ffffff !important;
 }
-/* DATE PICKER – FORCE BIJELI PLACEHOLDER */
+
 body.theme-dark .ab-date-field input::placeholder,
 body.theme-dark .ab-date-field .MuiInputBase-input::placeholder {
     color: #ffffff !important;
     opacity: 1 !important;
 }
 
-/*----------------------------------------------------------------------------------------------------*/
-/* ===============================
-   MUI DATE PICKER – DARK MODE
-   radi SAMO kad je body.theme-dark
-================================ */
-
 body.theme-dark .MuiPickersPopper-root {
     z-index: 2000;
 }
 
-/* POPUP */
 body.theme-dark .MuiPickersPopper-root .MuiPaper-root {
     background-color: #020617 !important;
     color: #e5e7eb !important;
@@ -480,7 +425,6 @@ body.theme-dark .MuiPickersPopper-root .MuiPaper-root {
     box-shadow: 0 25px 50px rgba(0,0,0,.7) !important;
 }
 
-/* HEADER */
 body.theme-dark .MuiPickersCalendarHeader-label {
     color: #e5e7eb !important;
     font-weight: 600;
@@ -490,13 +434,12 @@ body.theme-dark .MuiPickersArrowSwitcher-button {
     color: #94a3b8 !important;
 }
 
-/* DAYS OF WEEK */
+
 body.theme-dark .MuiDayCalendar-weekDayLabel {
     color: #64748b !important;
     font-weight: 600;
 }
 
-/* DAY NUMBERS */
 body.theme-dark .MuiPickersDay-root {
     color: #e5e7eb !important;
     border-radius: 10px;
@@ -506,25 +449,18 @@ body.theme-dark .MuiPickersDay-root:hover {
     background-color: #1e293b !important;
 }
 
-/* TODAY */
 body.theme-dark .MuiPickersDay-today {
     border: 1px solid #3b82f6 !important;
 }
 
-/* SELECTED */
 body.theme-dark .MuiPickersDay-root.Mui-selected {
     background-color: #3b82f6 !important;
     color: #ffffff !important;
 }
 
-/* DISABLED */
 body.theme-dark .MuiPickersDay-root.Mui-disabled {
     color: #475569 !important;
 }
-
-/* ===============================
-   INPUT – DARK MODE
-================================ */
 
 body.theme-dark .MuiOutlinedInput-root {
     background-color: #0f172a !important;

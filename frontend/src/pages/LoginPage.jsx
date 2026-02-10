@@ -37,14 +37,11 @@ export default function LoginPage() {
 
     return (
         <div className="login-root">
-            {/* LEFT */}
             <div className="login-left">
-                {/* zamijeni src kad ubaciš logo u public ili src/assets */}
                 <img className="login-logo" src="/unafilm.png" alt="UNA Film" />
                 <div className="login-tagline">Cinema Booking Management System</div>
             </div>
 
-            {/* RIGHT */}
             <div className="login-right">
                 <form className="login-card" onSubmit={handleLogin}>
                     <input

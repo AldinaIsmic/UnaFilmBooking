@@ -17,7 +17,6 @@ function daysInMonth(year, monthIndex) {
 }
 
 function toKey(dateStr) {
-    // uzmi samo YYYY-MM-DD (ako dođe T... odsijeci)
     const s = String(dateStr || "").slice(0, 10); // "2025-12-29"
     const [y, m, d] = s.split("-").map(Number);
     return y * 10000 + m * 100 + d; // 20251229
@@ -29,7 +28,7 @@ function isBookingOnDay(b, y, m, d) {
     const fromKey = toKey(b.datum_od);
     const toKeyVal = toKey(b.datum_do);
 
-    return cellKey >= fromKey && cellKey <= toKeyVal; // inclusive: od → do
+    return cellKey >= fromKey && cellKey <= toKeyVal;
 }
 
 export default function BookingCalendarPage() {
@@ -102,7 +101,6 @@ export default function BookingCalendarPage() {
         <div className="bc-container">
           <h1 className="bc-title">Booking kalendar</h1>
 
-          {/* FILTERS + RESET */}
           <div className="bc-top">
             <div className="bc-filters">
               <div className="bc-filter">
@@ -166,7 +164,6 @@ export default function BookingCalendarPage() {
             </button>
           </div>
 
-          {/* MONTH BAR */}
           <div className="bc-monthbar">
             <div className="bc-week-spacer" />
             <div className="bc-month-controls">
@@ -185,7 +182,6 @@ export default function BookingCalendarPage() {
             </div>
           </div>
 
-          {/* WEEK HEAD */}
           <div className="bc-weekhead">
             {dayHeaders.map((d) => (
                 <div className="bc-weekday" key={d}>
@@ -194,7 +190,6 @@ export default function BookingCalendarPage() {
             ))}
           </div>
 
-          {/* GRID */}
           <div className="bc-grid">
             {cells.map((day, i) => {
               const dayBookings = day ? bookingsForDay(day) : [];

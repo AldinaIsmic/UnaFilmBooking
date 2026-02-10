@@ -12,26 +12,25 @@
     justify-content: center;
     align-items: center;
 
-    padding-bottom: 120px; /* ⬅ stvara onaj bijeli prostor dole */
+    padding-bottom: 120px;
 }
 
 .login-logo {
-    width: 385px;          /* ⬅ bilo 320 */
+    width: 385px;
     height: auto;
     object-fit: contain;
-    margin-top: 40px;     /* ⬅ malo gore */
+    margin-top: 40px;
     margin-bottom: -55px;
 }
 
 .login-tagline {
-    margin-top: -20px;      /* ⬅ bilo 80 */
-    font-size: 22px;       /* ⬅ malo manji, elegantnije */
+    margin-top: -20px;
+    font-size: 22px;
     color: #6b7280;
-    font-weight: 600;      /* ⬅ BOLD kao na slici */
+    font-weight: 600;
     letter-spacing: 0.3px;
 }
 
-/* RIGHT SIDE */
 .login-right {
     width: 55%;
     background: #0b1325;
@@ -39,12 +38,11 @@
     justify-content: center;
     align-items: center;
 
-    padding-top: 40px; /* ⬅ forma malo gore */
+    padding-top: 40px;
 }
 
-/* FORM BLOCK */
 .login-card {
-    width: 560px;          /* ⬅ bilo 600 */
+    width: 560px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -52,7 +50,7 @@
 }
 
 .login-input {
-    width: 520px;          /* ⬅ bilo 560 */
+    width: 520px;
     height: 62px;
     border-radius: 30px;
     border: 2px solid #2b5cff;
@@ -70,9 +68,8 @@
     box-shadow: 0 0 0 4px rgba(43, 92, 255, 0.18);
 }
 
-/* BUTTON */
 .login-button {
-    width: 440px;          /* ⬅ malo uži od inputa */
+    width: 440px;
     height: 62px;
     border-radius: 32px;
     border: none;

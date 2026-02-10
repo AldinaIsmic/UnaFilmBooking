@@ -17,9 +17,6 @@ export default function DodajFilm() {
 
     const handleCancel = () => navigate("/movies");
 
-    // =========================
-    // FORM STATE
-    // =========================
     const [form, setForm] = useState({
         naziv: "",
         godina_distribucije: "",
@@ -34,9 +31,6 @@ export default function DodajFilm() {
         setForm((s) => ({ ...s, [name]: value }));
     };
 
-    // =========================
-    // SUBMIT → API
-    // =========================
     const onSubmit = async () => {
         if (!form.naziv || !form.godina_distribucije || !form.trajanje_min || !form.status || !form.zanr) {
             alert("Popuni sva obavezna polja");
@@ -72,13 +66,10 @@ export default function DodajFilm() {
     return (
         <div className="page-background movies-add-page add-page-root">
             <div className="page-container">
-                {/* PAGE TITLE */}
                 <h1 className="page-title">Dodaj film</h1>
                 <hr className="page-separator" />
 
-                {/* CARD */}
                 <div className="add-form-card">
-                    {/* HEADER */}
                     <div className="add-form-header">
                         <div>
                             <div className="add-form-subtitle">FORMULAR</div>
@@ -91,9 +82,7 @@ export default function DodajFilm() {
                         </div>
                     </div>
 
-                    {/* FORM GRID */}
                     <div className="add-form-grid">
-                        {/* ROW 1 */}
                         <div className="form-group">
                             <label>Naziv filma</label>
                             <input
@@ -114,7 +103,6 @@ export default function DodajFilm() {
                             />
                         </div>
 
-                        {/* ROW 2 */}
                         <div className="form-group">
                             <label>Trajanje</label>
                             <input
@@ -161,7 +149,6 @@ export default function DodajFilm() {
                             </div>
                         </div>
 
-                        {/* ROW 3 */}
                         <div className="form-row-full">
                             <div className="form-group">
                                 <label>Opis (opcionalno)</label>
@@ -175,7 +162,6 @@ export default function DodajFilm() {
                         </div>
                     </div>
 
-                    {/* FOOTER */}
                     <div className="add-form-footer">
                         <div className="footer-left">
                             <button

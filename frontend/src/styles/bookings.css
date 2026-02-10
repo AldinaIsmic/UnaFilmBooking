@@ -9,16 +9,12 @@
     padding: 26px 26px 40px;
 }
 
-/* TITLE */
 .page-title {
     font-size: 28px;
     font-weight: 700;
     margin: 0 0 24px 0;
 }
 
-/* =========================
-   STAT CARDS – kao Dashboard
-   ========================= */
 .stats-row {
     display: flex;
     gap: 24px;
@@ -66,7 +62,6 @@
     }
 }
 
-/* CONTROLS */
 .bookings-controls {
     display: flex;
     align-items: center;
@@ -79,7 +74,6 @@
     margin-left: auto;
 }
 
-/* BUTTON */
 .btn-primary {
     background: #3b82f6;
     color: #fff;
@@ -92,7 +86,6 @@
     width: 150px;
 }
 
-/* FILTER SELECTS */
 .filter-select-wrap {
     position: relative;
     width: 153px;
@@ -121,13 +114,10 @@
     pointer-events: none;
 }
 
-/* =========================
-   TABLE – LIGHT kao Partneri
-   ========================= */
 .booking-table-wrapper {
     background: #ffffff;
     border-radius: 14px;
-    border: 1px solid #0f172a; /* ✅ isti okvir */
+    border: 1px solid #0f172a;
     box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
     overflow: hidden;
     margin-top: 18px;
@@ -156,7 +146,7 @@
     justify-content: center;
 
     height: 44px;
-    padding: 0;                 /* ⬅ uklonjeno */
+    padding: 0;
     border-right: 1px solid #0f172a;
 }
 
@@ -164,7 +154,6 @@
     border-right: none;
 }
 
-/* body */
 .booking-table-body {
     height: calc(100vh - 360px);
     min-height: 420px;
@@ -172,7 +161,6 @@
     background: #ffffff;
 }
 
-/* rows */
 .booking-row {
     height: 44px;
     border-bottom: 1px solid #e5e7eb;
@@ -186,12 +174,10 @@
     color: #0f172a;
 }
 
-/* empty rows */
 .booking-row.empty > div {
     color: transparent;
 }
 
-/* STATUS */
 .status {
     padding: 4px 14px;
     border-radius: 999px;
@@ -220,7 +206,6 @@
     color: #7f1d1d;
 }
 
-/* BUTTON */
 .btn-details {
     background: #3b82f6;
     color: #fff;
@@ -233,7 +218,6 @@
     height: 26px;
 }
 
-/* scrollbar LIGHT */
 .booking-table-body::-webkit-scrollbar {
     width: 12px;
 }
@@ -265,7 +249,7 @@
 }
 
 .btn-export {
-    background: #22c55e; /* zeleno */
+    background: #22c55e;
     color: #ffffff;
     border: none;
     padding: 10px 18px;
@@ -281,10 +265,10 @@
 }
 
 .modal-header {
-    position: relative;          /* ⬅ ključ */
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;     /* centar za naslov */
+    justify-content: center;
 }
 
 .modal-title {
@@ -292,13 +276,11 @@
 }
 
 .modal-close {
-    position: absolute;          /* ⬅ izvadi iz flex toka */
-    right: 16px;                 /* skroz desno */
+    position: absolute;
+    right: 16px;
 }
 
-/* =========================
-   DARK MODE – kao Filmovi
-   ========================= */
+
 body.theme-dark .bookings-page {
     background: #020617;
     color: #e5e7eb;
@@ -324,26 +306,24 @@ body.theme-dark .select-caret {
     color: #e5e7eb;
 }
 
-/* table wrapper */
+
 body.theme-dark .booking-table-wrapper {
     background: #020617;
     border: 1px solid #1e293b;
     box-shadow: 0 18px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* header */
 body.theme-dark .booking-table-head {
     background: #2563eb;
     border-bottom: 1px solid #1e293b;
 }
 
-/* 3. HEADER VERTIKALNI DIVIDERI */
+
 body.theme-dark .booking-table-head > div {
     border-right: none !important;
-    outline-right: 1px solid #ffffff; /* 🔥 isto rješenje kao kod Movies */
+    outline-right: 1px solid #ffffff;
 }
 
-/* rows */
 body.theme-dark .booking-table-body {
     background: #020617;
 }
@@ -365,7 +345,6 @@ body.theme-dark .booking-row > div {
     color: #e5e7eb;
 }
 
-/* scrollbar DARK */
 body.theme-dark .booking-table-body::-webkit-scrollbar-track {
     background: #020617;
 }
@@ -374,17 +353,13 @@ body.theme-dark .booking-table-body::-webkit-scrollbar-thumb {
     background: #1e293b;
     border: 3px solid #020617;
 }
-/* =========================================
-   BOOKINGS TABLE – DARK MODE (WHITE FRAME)
-   ========================================= */
 
-/* 1. VANJSKI OKVIR */
+
 body.theme-dark .booking-table-wrapper {
     border: 1px solid #ffffff !important;
     background: #020617 !important;
 }
 
-/* 2. HEADER DONJA LINIJA */
 body.theme-dark .booking-table-head {
     border-bottom: 1px solid #ffffff !important;
     background: #2563eb !important;
@@ -394,12 +369,12 @@ body.theme-dark .booking-table-head {
 body.theme-dark .booking-table-head > div:last-child {
     outline-right: none !important;
 }
-/* BOOKING – DARK MODE: BIJELE LINIJE IZMEĐU KOLONA (HEADER) */
+
 body.theme-dark .booking-table-head > div {
     border-right: 1px solid #ffffff !important;
 }
 
-/* ukloni liniju na zadnjoj koloni */
+
 body.theme-dark .booking-table-head > div:last-child {
     border-right: none !important;
 }

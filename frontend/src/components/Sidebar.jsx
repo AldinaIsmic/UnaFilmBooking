@@ -15,10 +15,8 @@ export default function Sidebar({ role }) {
     return (
         <aside className="sidebar">
 
-            {/* TOP ICONS */}
             <div className="sidebar-top">
 
-                {/* DASHBOARD – svi */}
                 <button
                     className={`sidebar-btn ${isActive("/admin") || isActive("/referent") ? "active" : ""}`}
                     title="Dashboard"
@@ -27,7 +25,6 @@ export default function Sidebar({ role }) {
                     <img src="/icons/home.png" alt="Dashboard" />
                 </button>
 
-                {/* PLUS – DODAJ BOOKING – svi */}
                 <button
                     className={`sidebar-btn ${isActive("/bookings/add") ? "active" : ""}`}
                     title="Dodaj Booking"
@@ -36,7 +33,6 @@ export default function Sidebar({ role }) {
                     <img src="/icons/plus.png" alt="Dodaj Booking" />
                 </button>
 
-                {/* PARTNERI – SAMO ADMIN */}
                 {role === "ADMIN" && (
                     <button
                         className={`sidebar-btn ${isActive("/partners") ? "active" : ""}`}
@@ -47,7 +43,6 @@ export default function Sidebar({ role }) {
                     </button>
                 )}
 
-                {/* FILMOVI – svi */}
                 <button
                     className={`sidebar-btn ${isActive("/movies") ? "active" : ""}`}
                     title="Filmovi"
@@ -56,7 +51,6 @@ export default function Sidebar({ role }) {
                     <img src="/icons/movies.png" alt="Filmovi" />
                 </button>
 
-                {/* BOOKING LIST – svi */}
                 <button
                     className={`sidebar-btn ${isActive("/bookings") ? "active" : ""}`}
                     title="Booking"
@@ -65,7 +59,6 @@ export default function Sidebar({ role }) {
                     <img src="/icons/book.png" alt="Booking" />
                 </button>
 
-                {/* KALENDAR – SAMO ADMIN (ako želiš da referent NE vidi) */}
                 {role === "ADMIN" && (
                     <button
                         className={`sidebar-btn ${isActive("/calendar") ? "active" : ""}`}
@@ -76,7 +69,6 @@ export default function Sidebar({ role }) {
                     </button>
                 )}
 
-                {/* SETTINGS – svi */}
                 <button
                     className={`sidebar-btn ${isActive("/settings") ? "active" : ""}`}
                     title="Postavke"
@@ -87,7 +79,6 @@ export default function Sidebar({ role }) {
 
             </div>
 
-            {/* LOGOUT – svi */}
             <div className="sidebar-bottom">
                 <button className="sidebar-logout" onClick={logout} title="Logout">
                     <img src="/icons/logout.png" alt="Logout" />

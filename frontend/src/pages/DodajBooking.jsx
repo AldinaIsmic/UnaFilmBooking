@@ -102,7 +102,6 @@ export default function AddBookingPage() {
                 <form onSubmit={onSubmit}>
                     <div className="ab-grid">
 
-                        {/* FILM */}
                         <div className="ab-field">
                             <label>Odaberi Film</label>
                             <div className="ab-select-wrap">
@@ -120,7 +119,6 @@ export default function AddBookingPage() {
                             </div>
                         </div>
 
-                        {/* PARTNER */}
                         <div className="ab-field">
                             <label>Odaberi Partnera</label>
                             <div className="ab-select-wrap">
@@ -138,7 +136,6 @@ export default function AddBookingPage() {
                             </div>
                         </div>
 
-                        {/* DATUM OD */}
                         <div className="ab-field ab-date-field">
                             <label>Datum početka</label>
 
@@ -285,7 +282,6 @@ export default function AddBookingPage() {
                             </LocalizationProvider>
                         </div>
 
-                        {/* DATUM DO */}
                         <div className="ab-field ab-date-field">
                             <label>Datum završetka</label>
 
@@ -430,7 +426,6 @@ export default function AddBookingPage() {
                             </LocalizationProvider>
                         </div>
 
-                        {/* MATERIJAL */}
                         <div className="ab-field">
                             <label>Tip materijala</label>
                             <div className="ab-select-wrap">
@@ -447,7 +442,6 @@ export default function AddBookingPage() {
                             </div>
                         </div>
 
-                        {/* NAPOMENA */}
                         <div className="ab-field">
                             <label>Detalji</label>
                             <input
@@ -458,7 +452,6 @@ export default function AddBookingPage() {
                             />
                         </div>
 
-                        {/* STATUS */}
                         <div className="ab-field ab-status">
                             <label>Status</label>
                             <div className="ab-radios">

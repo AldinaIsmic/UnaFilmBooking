@@ -1,7 +1,3 @@
-/* =====================================================
-   ADD MOVIE (DODAJ FILM) – SAME LOOK AS ADD PARTNER
-   ===================================================== */
-
 .movies-add-page.page-background {
     min-height: 100vh;
     background: #ffffff;
@@ -215,12 +211,6 @@
     }
 }
 
-/* =====================================================
-   DARK MODE OVERRIDE (FIX + kompatibilno i za wrapper .theme-dark)
-   (VRACENO kao u starom DodajFilm, ali SCOPED)
-   ===================================================== */
-
-/* koristi se i kad je theme-dark na body ili na wrapperu */
 :where(body.theme-dark, .theme-dark) .movies-add-page.page-background {
     background: #020617 !important;
     color: #E5E7EB;

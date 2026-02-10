@@ -13,7 +13,6 @@ const formatStatus = (s) => {
     return s;
 };
 
-// 🟦 EXCEL HEADER STYLE
 const headerStyle = {
     font: { bold: true, color: { rgb: "FFFFFF" } },
     fill: { fgColor: { rgb: "4472C4" } },
@@ -40,9 +39,6 @@ export default function BookingsPage() {
     const [filmFilter, setFilmFilter] = useState("Svi");
     const [partnerFilter, setPartnerFilter] = useState("Svi");
 
-    // =========================
-    // FETCH BOOKINGS + STATS (ROLE BASED)
-    // =========================
     const fetchData = () => {
         fetch(
             `${import.meta.env.VITE_API_URL}/api/bookings?userId=${user.id}&role=${user.role}`
@@ -79,9 +75,6 @@ export default function BookingsPage() {
         );
     }, [bookings, filmFilter, partnerFilter]);
 
-    // =========================
-    // DELETE BOOKING (ADMIN ONLY)
-    // =========================
     const handleDeleteBooking = async (id) => {
 
 
@@ -110,16 +103,12 @@ export default function BookingsPage() {
         }
     };
 
-    // =========================
-    // EXPORT TO EXCEL (ADMIN ONLY)
-    // =========================
     const handleExportBooking = (b) => {
         if (!isAdmin) return;
 
-        // ===== STILOVI =====
         const headerStyle = {
             font: { bold: true, color: { rgb: "FFFFFF" }, sz: 12 },
-            fill: { fgColor: { rgb: "3b82f6" } }, // tamno plava
+            fill: { fgColor: { rgb: "3b82f6" } },
             alignment: { horizontal: "center", vertical: "center" },
             border: {
                 top: { style: "thin" },
@@ -172,7 +161,6 @@ export default function BookingsPage() {
 
             "!ref": "A1:H2",
 
-            // ===== ŠIRINE KOLONA =====
             "!cols": [
                 { wch: 20 },
                 { wch: 22 },
@@ -184,7 +172,6 @@ export default function BookingsPage() {
                 { wch: 16 },
             ],
 
-            // ===== VISINA REDOVA =====
             "!rows": [
                 { hpt: 28 }, // header
                 { hpt: 24 }, // data
@@ -197,15 +184,11 @@ export default function BookingsPage() {
         XLSX.writeFile(wb, `booking_${b.film}_${b.partner}.xlsx`);
     };
 
-
-
-
     return (
         <div className="bookings-page">
             <div className="bookings-container">
                 <h1 className="page-title">Booking</h1>
 
-                {/* STATS */}
                 <div className="stats-row">
                     <div className="stat-card">
                         <div className="stat-number">{stats.total}</div>
@@ -225,8 +208,7 @@ export default function BookingsPage() {
                     </div>
                 </div>
 
-                {/* CONTROLS */}
-                {/* CONTROLS */}<div className="bookings-controls">
+                <div className="bookings-controls">
                 <button
                     className="btn-primary"
                     onClick={() => navigate("/bookings/add")}
@@ -269,9 +251,6 @@ export default function BookingsPage() {
                 )}
             </div>
 
-
-
-                {/* TABLE */}
                 <div className="booking-table-wrapper">
                     <div className="booking-table-head">
                         <div>Film</div>
@@ -317,7 +296,6 @@ export default function BookingsPage() {
                 </div>
             </div>
 
-            {/* MODAL */}
             {selected && (
                 <div className="modal-overlay" onClick={() => setSelected(null)}>
                     <div className="modal" onClick={(e) => e.stopPropagation()}>

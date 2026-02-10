@@ -124,10 +124,6 @@
     pointer-events: none;
 }
 
-/* =========================
-   TABLE WRAPPER
-========================= */
-
 .movies-table {
     background: #ffffff;
     border-radius: 14px;
@@ -137,11 +133,6 @@
     margin-top: 26px;
 }
 
-/* =========================
-   TABLE GRID – ISTO KAO PARTNERI
-   Kolone:
-   Naziv | Godina | Trajanje | Status | Detalji
-========================= */
 
 .movies-table .table-head,
 .movies-table .table-row {
@@ -149,10 +140,6 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
 }
-
-/* =========================
-   HEADER
-========================= */
 
 .movies-table .table-head {
     background: #3b82f6;
@@ -164,7 +151,7 @@
 .movies-table .th {
     padding: 13px 14px;
     text-align: center;
-    border-right: 1.5px solid #1f2937; /* crna linija između kolona */
+    border-right: 1.5px solid #1f2937;
     font-size: 14px;
 }
 
@@ -172,20 +159,12 @@
     border-right: none;
 }
 
-/* =========================
-   BODY
-========================= */
-
 .movies-table .table-body {
     height: calc(100vh - 260px);
     min-height: 420px;
     overflow-y: auto;
     background: #fff;
 }
-
-/* =========================
-   ROW
-========================= */
 
 .movies-table .table-row {
     height: 44px;
@@ -203,10 +182,6 @@
     padding: 0;
 }
 
-/* =========================
-   STATUS PILL
-========================= */
-
 .status-pill {
     display: inline-flex;
     align-items: center;
@@ -220,9 +195,6 @@
     font-size: 12px;
 }
 
-/* =========================
-   DETAILS BUTTON
-========================= */
 
 .movies-table .btn-details {
     background: #3b82f6;
@@ -235,9 +207,6 @@
     font-weight: 700;
 }
 
-/* =========================
-   SCROLLBAR
-========================= */
 
 .movies-table .table-body::-webkit-scrollbar {
     width: 12px;
@@ -278,12 +247,6 @@
     margin-top: 24px;
 }
 
-
-/* =====================================================
-   MOVIES PAGE – DARK MODE OVERRIDE
-   ===================================================== */
-
-/* PAGE BACKGROUND */
 body.theme-dark .movies-page {
     background: #020617;
     color: #E5E7EB;
@@ -309,9 +272,6 @@ body.theme-dark .btn-add:hover {
     filter: brightness(1.05);
 }
 
-/* =========================
-   SEARCH
-========================= */
 
 body.theme-dark .search-wrap {
     background: #0F172A;
@@ -331,9 +291,6 @@ body.theme-dark .search-input::placeholder {
     color: #94A3B8;
 }
 
-/* =========================
-   SELECTS
-========================= */
 
 body.theme-dark .select {
     background: #0F172A;
@@ -346,9 +303,6 @@ body.theme-dark .caret {
     opacity: 0.8;
 }
 
-/* =========================
-   TABLE WRAPPER
-========================= */
 
 body.theme-dark .movies-table {
     background: #020617;
@@ -356,9 +310,6 @@ body.theme-dark .movies-table {
     box-shadow: 0 18px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* =========================
-   TABLE HEADER
-========================= */
 
 body.theme-dark .movies-table .table-head {
     background: #2563EB;
@@ -370,17 +321,9 @@ body.theme-dark .movies-table .th {
     border-right: 1px solid #1E293B;
 }
 
-/* =========================
-   TABLE BODY
-========================= */
-
 body.theme-dark .movies-table .table-body {
     background: #020617;
 }
-
-/* =========================
-   ROWS
-========================= */
 
 body.theme-dark .movies-table .table-row {
     background: #020617;
@@ -395,26 +338,15 @@ body.theme-dark .movies-table .table-row:hover {
     background: #1E293B;
 }
 
-/* =========================
-   CELLS
-========================= */
-
 body.theme-dark .movies-table .td {
     color: #E5E7EB;
 }
 
-/* =========================
-   STATUS PILL
-========================= */
 
 body.theme-dark .status-pill {
     background: #4ADE80;
     color: #052E12;
 }
-
-/* =========================
-   DETAILS BUTTON
-========================= */
 
 body.theme-dark .movies-table .btn-details {
     background: #3B82F6;
@@ -425,10 +357,6 @@ body.theme-dark .movies-table .btn-details:hover {
     filter: brightness(1.05);
 }
 
-/* =========================
-   SCROLLBAR
-========================= */
-
 body.theme-dark .movies-table .table-body::-webkit-scrollbar-track {
     background: #020617;
 }
@@ -438,9 +366,6 @@ body.theme-dark .movies-table .table-body::-webkit-scrollbar-thumb {
     border: 3px solid #020617;
 }
 
-/* =====================================================
-   MOVIES PAGE – DARK MODE OVERRIDE
-   ===================================================== */
 
 body.theme-dark .movies-page {
     background: #020617;
@@ -470,14 +395,11 @@ body.theme-dark .select {
     color: #e5e7eb;
 }
 
-/* table wrapper */
 body.theme-dark .movies-table {
     background: #020617;
     border: 1px solid #1e293b;
     box-shadow: 0 18px 30px rgba(0, 0, 0, 0.6);
 }
-
-/* header */
 
 body.theme-dark .movies-table .table-head {
     background: #2563eb;
@@ -524,10 +446,6 @@ body.theme-dark .movies-table .table-body::-webkit-scrollbar-thumb {
     background: #1e293b;
     border: 3px solid #020617;
 }
-
-/* =========================
-   MOVIES MODAL (DETALJI)
-========================= */
 
 .modal-overlay {
     position: fixed;
@@ -597,10 +515,6 @@ body.theme-dark .movies-table .table-body::-webkit-scrollbar-thumb {
         transform: scale(1);
     }
 }
-
-/* =========================
-   DARK MODE – MODAL
-========================= */
 
 body.theme-dark .modal {
     background: #020617;

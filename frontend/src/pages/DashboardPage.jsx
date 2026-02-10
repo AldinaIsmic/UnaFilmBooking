@@ -52,17 +52,14 @@ export default function DashboardPage() {
             .then(setCharts);
     }, []);
 
-    // ======================
-    // CHART DATA (PLAVA BOJA)
-    // ======================
     const bookingChartData = {
         labels: charts.bookingsByMonth.map(b => `Mjesec ${b.mjesec}`),
         datasets: [
             {
                 label: "Bookinzi",
                 data: charts.bookingsByMonth.map(b => b.total),
-                borderColor: "#2563eb",        // 🔵 plava
-                backgroundColor: "#2563eb",    // 🔵 plava
+                borderColor: "#2563eb",
+                backgroundColor: "#2563eb",
                 pointBackgroundColor: "#2563eb",
                 tension: 0.4
             }
@@ -75,7 +72,7 @@ export default function DashboardPage() {
             {
                 label: "Bookinzi",
                 data: charts.partnerActivity.map(p => p.total),
-                backgroundColor: "#2563eb"     // 🔵 plava
+                backgroundColor: "#2563eb"
             }
         ]
     };
@@ -83,14 +80,12 @@ export default function DashboardPage() {
     return (
         <div className="dash-root">
             <Sidebar role={user?.role} />
-
             <main className="dash-main">
                 <h1 className="app-header-title">Dashboard</h1>
 
                 <div className="section-title">Kratka statistika</div>
 
                 <div className="dashboard-row">
-                    {/* LIJEVO */}
                     <div className="dashboard-left">
                         <div className="dash-left-wrap">
                             <div className="stat-grid">
@@ -116,7 +111,6 @@ export default function DashboardPage() {
                             </div>
                         </div>
 
-                        {/* GRAFOVI */}
                         <div className="dash-left-wrap">
                             <div className="charts-grid">
                                 <div className="chart-box">
@@ -132,7 +126,6 @@ export default function DashboardPage() {
                         </div>
                     </div>
 
-                    {/* DESNO */}
                     <div className="quick-actions">
                         <div className="section-title">Quick actions</div>
 

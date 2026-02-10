@@ -15,11 +15,9 @@ export default function MoviesPage() {
 
     const navigate = useNavigate();
 
-    // ✅ USER + ROLE (NIŠTA DRUGO NE DIRAMO)
     const user = JSON.parse(localStorage.getItem("user"));
     const isAdmin = user?.role === "ADMIN";
 
-    // FETCH MOVIES
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/api/movies`)
             .then(res => {
@@ -89,7 +87,6 @@ export default function MoviesPage() {
                 <h1 className="movies-title">Filmovi</h1>
 
                 <div className="movies-controls">
-                    {/* LIJEVA STRANA */}
                     <div className="movies-left">
                         {isAdmin && (
                             <button
@@ -101,7 +98,6 @@ export default function MoviesPage() {
                         )}
                     </div>
 
-                    {/* DESNA STRANA */}
                     <div className="movies-filters">
                         <div className="search-wrap">
                             <svg

@@ -1,6 +1,6 @@
 /* ROOT */
 .dash-root {
-    min-height: 100vh;              /* ✅ bitno: da body skrola, ne container */
+    min-height: 100vh;
     display: flex;
     font-family: "Segoe UI", system-ui, sans-serif;
 }
@@ -11,7 +11,6 @@
     padding: 0px 48px 32px 0px;
     background: #ffffff;
 
-    /* ✅ nema unutrašnjeg scrolla */
     height: auto !important;
     overflow: visible !important;
 }
@@ -45,14 +44,12 @@
     gap: 32px;
 }
 
-/* WRAPPER (ako ga NE koristiš u JSX, slobodno obriši; ne smeta ni ovako) */
 .dash-left-wrap {
     width: 100%;
     max-width: 920px;
     margin-right: 32px;
 }
 
-/* STAT GRID */
 .stat-grid {
     width: 100%;
     display: grid;
@@ -62,7 +59,6 @@
     justify-items: stretch;
 }
 
-/* STAT CARD */
 .stat-grid > .stat-card {
     width: 100%;
     box-sizing: border-box;

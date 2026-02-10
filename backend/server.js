@@ -123,7 +123,7 @@
                 from: `"UNA Film Booking" <${process.env.EMAIL_USER}>`,
                 to: process.env.EMAIL_TO,
                 subject,
-                text,          
+                text,
                 html: html || undefined
             });
             console.log("📩 Email poslan");

@@ -164,7 +164,6 @@ export default function PartnersPage() {
           </div>
         </div>
 
-        {/* 🔥 MODAL */}
         {selectedPartner && (
             <div className="modal-overlay" onClick={() => setSelectedPartner(null)}>
                 <div className="modal-card" onClick={e => e.stopPropagation()}>
@@ -194,7 +193,6 @@ export default function PartnersPage() {
                         )}
                     </div>
 
-                    {/* ⬇️ FOOTER */}
                     <div className="modal-footer">
                         <button
                             className="btn-delete"
