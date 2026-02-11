@@ -25,7 +25,7 @@
     });
 
     app.use(express.json());
-    
+
     const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
@@ -965,3 +965,7 @@
     app.listen(PORT, () => {
         console.log(`Server pokrenut na http://localhost:${PORT}`);
     });
+
+    console.log("SERVER STARTING...");
+
+    console.log("DB CONNECTED");
